@@ -1,0 +1,29 @@
+{%extends "layout.html"%}
+{%block head%}
+<title>Frames</title>
+{%endblock%}
+
+{%block content%}
+<section>
+<h1>Create New Vintage Frames</h1>
+<hr>
+<form action="/frames" method="POST">
+    Title:<input type='text' name='title' id='title'>
+    <br>
+    Material:<input type='text' name='material' id='material'>
+    <br>
+    <input type='submit' value='POST'>
+</form>
+    {% for frame in posts %}
+        <h2>{{ frame.title }}</h2>
+        <p>{{ frame.Material }}</p>
+        {% if frame.Author%}
+            <h6>By: {{ frame.Author}}</h6>
+        {% else %}
+            <h6>By: desconocido</h6>
+        {% endif %}
+        <a href='/frames/delete/{{frame.id}}'>Delete</a>
+        <hr>
+    {% endfor%}
+</section>
+{% endblock %}
